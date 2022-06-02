@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function printFarmInventory(p1,p2)
+        {
+            document.write(String(p1).padStart(3,'0')+ " Cows <br>");
+            document.write(String(p2).padStart(3,'0')+ " Chickens <br>");
+        }
+        a=prompt("Enter no of cows in farm");
+        b=prompt("Enter no of chickens in farm");
+        printFarmInventory(a,b);
+    </script>
+</body>
+</html>
