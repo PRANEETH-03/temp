@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function unique_char(str1)
+{
+ var str=str1;
+ var uniql="";
+ for (var x=0;x < str.length;x++)
+ {
+
+ if(uniql.indexOf(str.charAt(x))==-1)
+  {
+  uniql += str[x];  
+  
+   }
+  }
+  return uniql;  
+}  
+document.write(unique_char("thequickbrownfoxjumpsoverthelazydog"));
+    </script>
+</body>
+</html>
