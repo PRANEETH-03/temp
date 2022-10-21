@@ -1,0 +1,424 @@
+//java code
+
+
+package com.example.cal112;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+    Button nine, eight, seven, six, five, four, three, two, one, plus, minus, multiply, division, module,equal, zero, dot, clear;
+    EditText res;
+    String operatorPressed = " ";
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        res = findViewById(R.id.res);
+        zero = findViewById(R.id.zero);
+        one = findViewById(R.id.one);
+        two = findViewById(R.id.two);
+        three = findViewById(R.id.three);
+        four = findViewById(R.id.four);
+        five = findViewById(R.id.five);
+        six = findViewById(R.id.six);
+        seven = findViewById(R.id.seven);
+        eight = findViewById(R.id.eight);
+        nine = findViewById(R.id.nine);
+        plus = findViewById(R.id.plus);
+        minus = findViewById(R.id.minus);
+        multiply = findViewById(R.id.mulitply);
+        division = findViewById(R.id.divide);
+        module=findViewById(R.id.module);
+        dot = findViewById(R.id.dot);
+        equal = findViewById(R.id.equal);
+        clear = findViewById(R.id.clear);
+
+        zero.setOnClickListener(this);
+        one.setOnClickListener(this);
+        two.setOnClickListener(this);
+        three.setOnClickListener(this);
+        four.setOnClickListener(this);
+        five.setOnClickListener(this);
+        six.setOnClickListener(this);
+        seven.setOnClickListener(this);
+        eight.setOnClickListener(this);
+        nine.setOnClickListener(this);
+        plus.setOnClickListener(this);
+        minus.setOnClickListener(this);
+        multiply.setOnClickListener(this);
+        division.setOnClickListener(this);
+        module.setOnClickListener(this);
+        dot.setOnClickListener(this);
+        equal.setOnClickListener(this);
+        clear.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        double finalRes = 0.0;
+        switch (view.getId()) {
+            case R.id.zero:
+                res.append("0");
+                break;
+            case R.id.one:
+                res.append("1");
+                break;
+            case R.id.two:
+                res.append("2");
+                break;
+            case R.id.three:
+                res.append("3");
+                break;
+            case R.id.four:
+                res.append("4");
+                break;
+            case R.id.five:
+                res.append("5");
+                break;
+            case R.id.six:
+                res.append("6");
+                break;
+            case R.id.seven:
+                res.append("7");
+                break;
+            case R.id.eight:
+                res.append("8");
+                break;
+            case R.id.nine:
+                res.append("9");
+                break;
+            case R.id.plus:
+                res.append("+");
+                operatorPressed = "+";
+                break;
+            case R.id.minus:
+                res.append("-");
+                operatorPressed = "-";
+                break;
+            case R.id.multiply:
+                res.append("*");
+                operatorPressed = "*";
+                break;
+            case R.id.divide:
+                res.append("/");
+                operatorPressed = "/";
+                break;
+            case R.id.module:
+                res.append("%");
+                operatorPressed = "%";
+                break;
+            case R.id.dot:
+                res.append(".");
+                break;
+            case R.id.equal:
+                finalRes =
+                        (double) evaluate(res.getText().toString(), operatorPressed);
+                res.setText(String.valueOf(finalRes));
+                break;
+
+            case R.id.clear:
+                res.setText(" ");
+                break;
+        }
+
+    }
+
+    private Object evaluate(String toString, String operatorPressed) {
+        String[] tokens;
+        tokens = toString.split("\\+|-|\\*|\\/|%");
+        double firstOperand = Double.parseDouble(tokens[0]);
+        double secondOperand = Double.parseDouble(tokens[1]);
+        switch (operatorPressed) {
+            case "+":
+                return firstOperand + secondOperand;
+            case "-":
+                return firstOperand - secondOperand;
+            case "*":
+                return firstOperand * secondOperand;
+            case "/":
+                return firstOperand / secondOperand;
+            case "%":
+                return firstOperand % secondOperand;
+            default:
+                return 0;
+
+        }
+    }
+}
+
+
+
+/// xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:layout_margin="10sp"
+    android:background="#3C4043"
+    >
+
+    <TextView
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:inputType="textPersonName"
+        android:text="CALCULATOR"
+        android:textColor="#8EB6F8"
+        android:textSize="40dp"
+        tools:ignore="MissingConstraints" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="445dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:background="#5F6368"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/ac"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="AC" />
+
+            <Button
+                android:id="@+id/bar"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="()" />
+
+            <Button
+                android:id="@+id/module"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="%" />
+
+            <Button
+                android:id="@+id/divide"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="/" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:background="#5F6368"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/one"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="1" />
+
+            <Button
+                android:id="@+id/two"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="2" />
+
+            <Button
+                android:id="@+id/three"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="3" />
+
+            <Button
+                android:id="@+id/RED"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="*" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:background="#5F6368"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/four"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="4" />
+
+            <Button
+                android:id="@+id/five"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="5" />
+
+            <Button
+                android:id="@+id/six"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="6" />
+
+            <Button
+                android:id="@+id/minus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="-" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:background="#5F6368"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/seven"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="7" />
+
+            <Button
+                android:id="@+id/eight"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="8" />
+
+            <Button
+                android:id="@+id/nine"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="9" />
+
+            <Button
+                android:id="@+id/plus"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="+" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="87dp"
+            android:background="#5F6368"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/dot"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="." />
+
+            <Button
+                android:id="@+id/zero"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="0" />
+
+            <Button
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="Clear" />
+
+            <Button
+                android:id="@+id/equal"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:backgroundTint="#96AE8D"
+                android:text="=" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/res"
+        android:layout_width="match_parent"
+        android:layout_height="134dp"
+        android:background="#5F6368"
+        android:text="  "
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName"
+        app:layout_constraintVertical_bias="0.02" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
